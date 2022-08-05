@@ -24,10 +24,10 @@ namespace primera_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Song>>> Get()
         {
-            return await _context.Set<Song>()
-                .AsQueryable()
-                .Include("Album")
-                .ToListAsync();
+            // return await _context.Set<Song>()
+            //    .AsQueryable()
+            //    .ToListAsync();
+            return await _context.Song.ToListAsync();
         }
 
 
@@ -40,7 +40,6 @@ namespace primera_api.Controllers
             return CreatedAtAction("Get", new { id = song.Id }, song);
         }
 
-        // DELETE: api/Songs/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Song>> Delete(int id)
         {

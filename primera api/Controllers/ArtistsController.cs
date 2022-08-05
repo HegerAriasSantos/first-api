@@ -28,7 +28,8 @@ namespace primera_api.Controllers
 
            return await _context.Set<Artist>()
                 .AsQueryable()
-                .Include("Albums")
+                .Include( x => x.Albums)
+                .ThenInclude( x => x.Songs)
                 .ToListAsync();
         }
 

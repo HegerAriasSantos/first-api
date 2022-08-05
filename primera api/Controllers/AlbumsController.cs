@@ -24,7 +24,11 @@ namespace primera_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Album>>> Get()
         {
-            return await _context.Album.ToListAsync();
+            return await _context.Set<Album>()
+                .AsQueryable()
+                .Include(x => x.Artist)
+                .Include(x => x.Songs)
+                .ToListAsync();
         }
 
         [HttpPost]
